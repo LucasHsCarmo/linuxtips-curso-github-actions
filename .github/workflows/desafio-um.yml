@@ -1,4 +1,4 @@
-name: desafio-um
+name: First Challenge
 
 on:
   workflow_dispatch:
@@ -10,23 +10,25 @@ on:
         placeholder: "alpine:latest"
 
 jobs:
-  run:
+  desafio:
     runs-on: ubuntu-latest
-
-  steps:
-    - name: "Validate Docker Image"
-      shell: bash
-      run: |
-        IMAGE="${{ inputs.docker_image }}"
-    
-    - name: "Download Docker Image"
-      run: |
-        docker pull "${{ inputs.docker_image }}"
-    
-    - name: "List Docker Image"
-      run: |
-        docker images
-
-    - name: "Docker Scout vulnerability scan"
-      run: |
-        docker scout cves "${{ inputs.docker_image }}"
+    steps:
+      - name: Validate Docker Image
+        shell: bash
+        run: |
+          IMAGE="${{ inputs.docker_image }}"
+      
+      - name: Download Docker Image
+        run: |
+          docker pull "${{ inputs.docker_image }}"
+      
+      - name: List Docker Image
+        run: |
+          docker images
+      
+      # plus challenge
+      # - name: Docker Scout vulnerability scan
+      #   uses: docker/scout-action@v1
+      #   with:
+      #     command: cves
+      #     image: "${{ inputs.docker_image }}"
