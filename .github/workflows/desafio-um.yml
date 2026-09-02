@@ -12,21 +12,20 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    steps:
+      - name: Validate Docker Image
+        shell: bash
+        run: |
+          IMAGE="${{ inputs.docker_image }}"
+      
+      - name: Download Docker Image
+        run: |
+          docker pull "${{ inputs.docker_image }}"
+      
+      - name: List Docker Image
+        run: |
+          docker images
 
-  steps:
-    - name: "Validate Docker Image"
-      shell: bash
-      run: |
-        IMAGE="${{ inputs.docker_image }}"
-    
-    - name: "Download Docker Image"
-      run: |
-        docker pull "${{ inputs.docker_image }}"
-    
-    - name: "List Docker Image"
-      run: |
-        docker images
-
-    - name: "Docker Scout vulnerability scan"
-      run: |
-        docker scout cves "${{ inputs.docker_image }}"
+      - name: Docker Scout vulnerability scan
+        run: |
+          docker scout cves "${{ inputs.docker_image }}"
