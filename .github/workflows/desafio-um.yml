@@ -1,0 +1,32 @@
+name: desafio-um
+
+on:
+  workflow_dispatch:
+    inputs:
+      docker_image:
+        description: "Format Image Docker - image:tag"
+        required: true
+        type: string
+        placeholder: "alpine:latest"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: "Validate Docker Image"
+      shell: bash
+      run: |
+        IMAGE="${{ inputs.docker_image }}"
+    
+    - name: "Download Docker Image"
+      run: |
+        docker pull "${{ inputs.docker_image }}"
+    
+    - name: "List Docker Image"
+      run: |
+        docker images
+
+    - name: "Docker Scout vulnerability scan"
+      run: |
+        docker scout cves "${{ inputs.docker_image }}"
