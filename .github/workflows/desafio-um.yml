@@ -1,4 +1,4 @@
-name: desafio-um
+name: First Challenge
 
 on:
   workflow_dispatch:
