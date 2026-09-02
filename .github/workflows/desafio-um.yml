@@ -10,7 +10,7 @@ on:
         placeholder: "alpine:latest"
 
 jobs:
-  run:
+  desafio:
     runs-on: ubuntu-latest
     steps:
       - name: Validate Docker Image
@@ -26,8 +26,9 @@ jobs:
         run: |
           docker images
       
-      - name: Docker Scout vulnerability scan
-        uses: docker/scout-action@v1
-        with:
-          command: cves
-          image: "${{ inputs.docker_image }}"
+      # plus challenge
+      # - name: Docker Scout vulnerability scan
+      #   uses: docker/scout-action@v1
+      #   with:
+      #     command: cves
+      #     image: "${{ inputs.docker_image }}"
