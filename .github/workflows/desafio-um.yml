@@ -5,9 +5,9 @@ on:
     inputs:
       docker_image:
         description: "Format Image Docker - image:tag"
-        required: true
+        required: false
         type: string
-        placeholder: "alpine:latest"
+        default: "alpine:latest"
 
 jobs:
   desafio:
