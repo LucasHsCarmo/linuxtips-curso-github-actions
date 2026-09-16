@@ -1,0 +1,12 @@
+name: Testando regra de protection rule
+
+on:
+  branch_protection_rule:
+    types: [created, edited, deleted]
+
+jobs:
+  print-modification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Avisa sobre notificação
+        run: echo "Esse workflow foi triggado pois uma Branch Protection foi alterada"
